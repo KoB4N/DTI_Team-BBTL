@@ -1,0 +1,160 @@
+/* CSS */
+
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Add this CSS to your existing styles.css file */
+
+.container-wrapper {
+    max-height: 100vh;
+    overflow-y: auto;
+    padding-bottom: 50px; /* Adjust as necessary to prevent footer from overlapping content */
+}
+
+
+.study-option {
+    display: flex;
+    justify-content: space-around; 
+    align-items: center; 
+    margin-top: 30px;
+}
+
+.btn-option1,
+.btn-option2 {
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+
+    border: 3px solid black;
+    width: 420px;
+    height: 425px;
+
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+
+    overflow: hidden; 
+    position: relative;
+}
+
+.btn-option1 {
+    margin-left: 300px;
+}
+
+.btn-option2 {
+    margin-right: 300px;
+}
+
+.image {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+    /* padding-bottom: 10px; */
+    margin-bottom: 15px;
+}
+
+.pik {
+    max-width: 3%;
+    /* height: auto; */
+    max-height: 3%;
+    /* padding-bottom: 10px; */
+    margin-bottom: 15px;
+}
+
+.sutd-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 125px;
+    padding-bottom: 20px;
+}
+
+.text {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    opacity: 0;
+}
+
+.container:hover .text {
+    bottom: 0;
+    transition: bottom 0.4s;
+    opacity: 1;
+}
+
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+    background-color: grey;
+    padding: 20px;
+    padding-top: 35px;
+    padding-bottom: 30px;
+    border-radius: 5px;
+}
+
+/* nav ul li a {
+    color: #333;
+    text-decoration: none;
+    transition: 0.1s;
+} */
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: 0.1s;
+}
+
+nav ul li a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+    margin-top: 50px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
