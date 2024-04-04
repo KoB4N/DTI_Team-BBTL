@@ -1,14 +1,21 @@
 // Function to handle color selection
 function submitColor() {
+    event.preventDefault();
+
     var slider = document.getElementById('colorSlider');
     var thumb = document.getElementById('colorThumb');
     var percentage = (thumb.offsetLeft + thumb.offsetWidth / 2) / slider.offsetWidth;
     var color = getColorAtPercentage(percentage);
 
-    var confirmation = confirm("Are you sure of your level of individual study intensity?");
+    if (hexDisplay.innerText.trim() === "") {
+        alert("Selection is invalid! Please try again!"); 
+    } else {
+        var confirmation = confirm("Are you sure of your level of individual study intensity?");
     
-    if (confirmation) {
-        alert("Your confirmed choice of selection is: " + hexDisplay.innerText + "\n" + "Good luck & Enjoy your study session! :))");
+        if (confirmation) {
+            alert("Your confirmed choice of selection is: " + hexDisplay.innerText + "\n" + "Good luck & Enjoy your study session! :))");
+            window.location.href = "home.html";
+        }
     }
 }
 
@@ -57,6 +64,7 @@ var thumb = document.getElementById('colorThumb');
 var slider = document.getElementById('colorSlider');
 var lens = document.getElementById('colorLens');
 var hexDisplay = document.getElementById('colorHex');
+hexDisplay.innerText = "#ffff00";
 
 var debounceTimer; // Variable to store the debounce timer
 

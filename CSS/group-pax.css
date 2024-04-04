@@ -12,7 +12,7 @@
 .container-wrapper {
     max-height: 100vh;
     overflow-y: auto;
-    padding-bottom: 50px;
+    padding-bottom: 50px; /* Adjust as necessary to prevent footer from overlapping content */
 }
 
 
@@ -159,158 +159,87 @@ footer {
     width: 100%;
 }
 
-/* individual.html CSS styling */
-.indiv-title {
+.pax-title {
     text-align: center;
     font-weight: bold;
     margin-top: 30px;
     margin-bottom: 50px;
-}
-
-.container-table {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-left: 700px;
-    margin-right: 700px;
-}
-
-.range {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.indiv-guide {
-    text-align: left;
     text-decoration: underline;
-    margin-top: 75px;
-    margin-bottom: 25px;
-    margin-left: 700px;
-    margin-right: 700px;
 }
 
-.intensityL {
-    text-align: left;
-    color: yellow;
-    text-shadow: -3px -3px 0 #000,  
-                  3px -3px 0 #000,
-                 -3px  3px 0 #000,
-                  3px  3px 0 #000; 
-}
-
-.intensityM {
-    text-align: left;
-    color: orange;
-    text-shadow: -3px -3px 0 #000,  
-                  3px -3px 0 #000,
-                 -3px  3px 0 #000,
-                  3px  3px 0 #000; 
-}
-
-.intensityH {
-    text-align: left;
-    color: red;
-    text-shadow: -3px -3px 0 #000,  
-                  3px -3px 0 #000,
-                 -3px  3px 0 #000,
-                  3px  3px 0 #000; 
-}
-
-.icon {
+.grp-icon {
     max-width: 100%;
     height: auto;
-    max-height: 150px;
+    max-height: 110px;
     padding-bottom: 10px;
+    margin-left: 725px;
+    margin-bottom: 75px;
 }
 
-.low {
+.nopax {
     font-weight: bold;
-    text-align: center;
-    color: yellow;
-    text-shadow: -3px -3px 0 #000,  
-                  3px -3px 0 #000,
-                 -3px  3px 0 #000,
-                  3px  3px 0 #000;  
+    text-align: left;
+    color: black; 
 }
 
-.medium {
-    font-weight: bold;
-    text-align: center;
-    color: orange;
-    text-shadow: -3px -3px 0 #000,  
-                  3px -3px 0 #000,
-                 -3px  3px 0 #000,
-                  3px  3px 0 #000;
-}
-
-.high {
-    font-weight: bold;
-    text-align: center;
-    color: red;
-    text-shadow: -3px -3px 0 #000,  
-                  3px -3px 0 #000,
-                 -3px  3px 0 #000,
-                  3px  3px 0 #000;
-}
-
-.color-lens {
-    width: 100px; /* Adjust lens size as necessary */
-    height: 100px;
-    border-radius: 50%;
-    position: absolute;
-    border: 3px solid black;
-    display: none;
-    transform: translate(-25%, -25%);;
-}
-
-.color-hex {
-    position: absolute;
-    transform: translate(-25%, 25%);
-    display: none;
-    font-size: 25px;
-}
-
-
-.color-slider {
-    width: 700px;
-    height: 40px;
-    background: linear-gradient(to right, yellow, orange, red);
-    border-radius: 20px;
-    margin: 0 auto 20px;
-    margin-top: 40px;
-}
-
-/* Color thumb */
-.color-thumb {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: white;
-    border: 2px solid black;
-    position: relative;
-    cursor: pointer;
-}
-
-/* Submit button */
 .submit-button {
     padding: 15px 40px;
-    background-color: #007bff; /*#007bff*/
+    background-color: #007bff;
     color: white;
     border: 3px solid black;
     border-radius: 5px;
     cursor: pointer;
     position: relative;
     left: 50%;
-    transform: translateX(-50%);
-    margin-top: 25px;
+    transform: translateX(-190%);
+    margin-top: 30px;
     font-size: 25px;
     font-weight: bold;
 }
 
-ul li{
-    margin-left: 700px;
-    margin-right: 700px;
-    text-align: left;
+.reset-button {
+    padding: 15px 40px;
+    background-color: orangered;
+    color: white;
+    border: 3px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    left: 50%;
+    transform: translateX(-190%);
+    margin-top: 30px;
+    font-size: 25px;
+    font-weight: bold;
 }
+
+.centralize-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.centralize-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+}
+
+.group-size {
+    text-align: center;
+    border: 3px solid black;
+    font-size: 20px;
+    padding: 7px;
+    opacity: 0.7;
+}
+
+.text-container {
+    display: flex;
+    align-items: center;
+}
+
+.text-container input.group-size {
+    margin-right: 5px;
+}
+
