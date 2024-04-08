@@ -1,245 +1,244 @@
-/* CSS */
-
-/* Reset default margin and padding */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Add this CSS to your existing styles.css file */
-
-.container-wrapper {
-    max-height: 100vh;
-    overflow-y: auto;
-    padding-bottom: 50px; /* Adjust as necessary to prevent footer from overlapping content */
-}
-
-
-.study-option {
-    display: flex;
-    justify-content: space-around; 
-    align-items: center; 
-    margin-top: 30px;
-}
-
-.btn-option1,
-.btn-option2 {
-    text-align: center;
-    align-items: center;
-    flex-direction: column;
-    display: flex;
-
-    border: 3px solid black;
-    width: 420px;
-    height: 425px;
-
-    font-size: 30px;
+.logo {
+    font-size: 70px;
     font-weight: bold;
-    color: #000;
-    text-decoration: none;
-
-    overflow: hidden; 
-    position: relative;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-feature-settings: "clig" off, "liga" off;
+    justify-content: center;
+    align-self: start;
+    color: #70d6ff;
+    letter-spacing: -7px;
+    margin-top: -25px;
 }
 
-.btn-option1 {
-    margin-left: 300px;
+@media (max-width: 991px) {
+.logo {
+    font-size: 40px;
+}
 }
 
-.btn-option2 {
-    margin-right: 300px;
-}
-
-.image {
-    max-width: 100%;
-    height: auto;
-    max-height: 300px;
-    /* padding-bottom: 10px; */
-    margin-bottom: 15px;
-}
-
-.pik {
-    max-width: 3%;
-    /* height: auto; */
-    max-height: 3%;
-    /* padding-bottom: 10px; */
-    margin-bottom: 15px;
-}
-
-.sutd-image {
-    max-width: 100%;
-    height: auto;
-    max-height: 125px;
-    padding-bottom: 20px;
-}
-
-.text {
-    position: absolute;
-    bottom: -100%;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 10px;
-    opacity: 0;
-}
-
-.container:hover .text {
-    bottom: 0;
-    transition: bottom 0.4s;
-    opacity: 1;
-}
-
-/* Basic styling */
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background: #333;
+.container {
+    background-color: #121212;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
     color: #fff;
-    padding: 10px 0;
+    font-weight: 400;
     text-align: center;
+    line-height: 130%;
+    padding: 40px 60px 80px;
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    text-align: center;
+@media (max-width: 991px) {
+.container {
+    padding: 0 20px;
+}
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 10px;
-    background-color: rgba(80, 80, 80, 0.5);
-    padding: 20px;
-    padding-top: 35px;
-    padding-bottom: 30px;
-    border-radius: 5px;
+.content-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1213px;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* nav ul li a {
-    color: #333;
+@media (max-width: 991px) {
+.content-wrapper {
+    max-width: 100%;
+}
+}
+
+.header {
+    align-self: stretch;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    justify-content: space-between;
+    padding: 0 0 27px 26px;
+}
+
+@media (max-width: 991px) {
+.header {
+    max-width: 100%;
+    flex-wrap: wrap;
+    padding-left: 20px;
+}
+}
+
+.nav-container {
+    justify-content: center;
+    display: flex;
+    width: 553px;
+    max-width: 100%;
+    flex-direction: column;
+}
+
+.nav-wrapper {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 2px;
+}
+
+@media (max-width: 991px) {
+.nav-wrapper {
+    max-width: 100%;
+}
+}
+
+.nav-list {
+    display: flex;
+    gap: 20px;
+}
+
+@media (max-width: 991px) {
+.nav-list {
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+}
+
+.nav-item {
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Readex Pro, sans-serif;
     text-decoration: none;
-    transition: 0.1s;
-} */
-
-nav ul li a {
     color: white;
-    text-decoration: none;
-    transition: 0.1s;
 }
 
-nav ul li a:hover {
-    color: blue;
+.nav-item-design {
+    flex-grow: 1;
+    flex-basis: auto;
+}
+
+.nav-item:hover {
     text-decoration: underline;
-}
-
-main {
-    padding: 20px;
-    margin-top: 50px;
-}
-
-section {
-    margin-bottom: 20px;
+    color: white;
 }
 
 footer {
-    background: #333;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.hero-image {
+    aspect-ratio: 1;
+    object-fit: auto;
+    object-position: center;
+    width: 162px;
+    margin-top: 100px;
+    max-width: 100%;
+  }
+
+@media (max-width: 991px) {
+.hero-image {
+    margin-top: 40px;
+}
+}
+
+.hero-title {
     color: #fff;
     text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    font-feature-settings: "clig" off, "liga" off;
+    margin-top: 29px;
+    font: 300 45px/130% Public Sans, -apple-system, Roboto, Helvetica, sans-serif;
 }
 
-.pax-title {
-    text-align: center;
-    font-weight: bold;
-    margin-top: 30px;
-    margin-bottom: 50px;
-    text-decoration: underline;
-}
-
-.grp-icon {
+@media (max-width: 991px) {
+.hero-title {
     max-width: 100%;
-    height: auto;
-    max-height: 110px;
-    padding-bottom: 10px;
-    margin-left: 725px;
-    margin-bottom: 75px;
+    font-size: 40px;
+}
 }
 
-.nopax {
-    font-weight: bold;
-    text-align: left;
-    color: black; 
+.divider {
+    border: none;
+    background-color: transparent;
+    margin-top: 25px;
+    width: 656px;
+    max-width: 100%;
+    height: 2px;
 }
 
-.submit-button {
-    padding: 15px 40px;
-    background-color: #007bff;
-    color: white;
-    border: 3px solid black;
-    border-radius: 5px;
-    cursor: pointer;
-    position: relative;
-    left: 50%;
-    transform: translateX(-190%);
-    margin-top: 30px;
+.divider-input {
+    border: none;
+    outline: none; /* Remove outline on focus */
+    background: none; /* Set background to none */
+    color: rgba(255, 255, 255, 1); /* Set text color to transparent */
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
     font-size: 25px;
-    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid white;
 }
 
-.reset-button {
-    padding: 15px 40px;
-    background-color: orangered;
-    color: white;
-    border: 3px solid black;
-    border-radius: 5px;
-    cursor: pointer;
-    position: relative;
-    left: 50%;
-    transform: translateX(-190%);
-    margin-top: 30px;
-    font-size: 25px;
-    font-weight: bold;
-}
-
-.centralize-container {
+.btn-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
+    margin-top: 60px;
 }
 
-.centralize-content {
+@media (max-width: 991px) {
+.btn-container {
+    white-space: initial;
+
+    flex-direction: column;
+    margin-top: 40px;
+}
+}
+
+.sub-button {
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Readex Pro, sans-serif;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 1);
+    padding: 15px 30px;
+    background-color: #121212;
+    color: white;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    text-align: center;
+    justify-content: center;
+    margin: 0 10px;
 }
 
-.group-size {
-    text-align: center;
-    border: 3px solid black;
-    font-size: 20px;
-    padding: 7px;
-    opacity: 0.7;
+.sub-button:hover {
+    border: 1px solid white;
+    background-color: #007bff;
+    color: white;
 }
 
-.text-container {
+@media (max-width: 991px) {
+.sub-button {
+    white-space: initial;
+    padding: 0 20px;
+}
+}
+
+.reset-button {
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Readex Pro, sans-serif;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 1);
+    padding: 15px 30px;
+    background-color: #121212;
+    color: white;
     display: flex;
     align-items: center;
+    justify-content: center;
+    margin: 0 10px;
 }
 
-.text-container input.group-size {
-    margin-right: 5px;
+.reset-button:hover {
+    border: 1px solid white;
+    background-color: orangered;
+    color: white;
 }
 
+@media (max-width: 991px) {
+    .reset-button {
+        white-space: initial;
+        padding: 0 20px;
+    }
+    }

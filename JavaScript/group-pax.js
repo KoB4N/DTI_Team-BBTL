@@ -9,7 +9,7 @@ window.onload = function() {
     inputField.addEventListener('focus', function() {
         if (inputField.value === 'e.g. 2' || inputField.value === '0') {
             inputField.value = '';
-            inputField.style.color = 'black'; 
+            inputField.style.color = 'white'; 
         }
     });
 

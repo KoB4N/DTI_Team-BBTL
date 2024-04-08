@@ -8,93 +8,89 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
     <body>
-    <div class="container-wrapper">
-        <header>
-            <h1>Welcome to Room Environment Manipulation [REM]</h1>
-        </header>
-        
-        <nav style="padding-top: 10px; padding-bottom: 10px;">
-            <ul>
-                <li>
-                    <img class="pik" src="src/home.png" alt="Image">
-                    <a href="home.html" style="font-size: 30px; margin: 15px;">Home</a>
-                </li>
-                <li>
-                    <img class="pik" src="src/overview.png" alt="Image">
-                    <a href="overview.html" style="font-size: 30px; margin: 15px;">Overview</a>
-                </li>
-                <li>
-                    <img class="pik" src="src/design.png" alt="Image">
-                    <a href="design.html" style="font-size: 30px; margin: 15px;">Design Process</a>
-                </li>
-                <li>
-                    <img class="pik" src="src/ourteam.png" alt="Image">
-                    <a href="team.html" style="font-size: 30px; margin: 15px;">Our Team</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="container">
+            <div class="content-wrapper">
 
-        <h1 class="indiv-title">Select Your Level of Individual Study Intensity:</h1>
+                <header class="header">
+                    <h1 class="logo">
+                        <span style="color: rgba(247, 22, 22, 1);">R</span>
+                        <span style="color: rgba(101, 240, 142, 1);">E</span>
+                        <span style="color: rgba(0, 255, 255, 1);">M</span>
+                    </h1>
+                    <nav class="nav-container">
+                        <ul class="nav-wrapper">
+                            <li class="nav-list">
+                                <a href="home.html" class="nav-item nav-item-design">HOME</a>
+                                <a href="overview.html" class="nav-item nav-item-design">OVERVIEW</a>
+                                <a href="design.html" class="nav-item nav-item-design">DESIGN PROCESS</a>
+                                <a href="team.html" class="nav-item nav-item-design">ABOUT US</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </header>
 
-        <div class="container-table">
-            <div class="range">
-                <img class="icon" src="src/lvl1.png" alt="Image">
-                <h2 class="low">Low</h2>
-            </div>
-            <div class="range">
-                <img class="icon" src="src/lvl2.png" alt="Image">
-                <h2 class="medium">Medium</h2>
-            </div>
-            <div class="range">
-                <img class="icon" src="src/lvl3.png" alt="Image">
-                <h2 class="high">High</h2>
+                <section class="main-content">
+                    <h2 class="main-heading">LOCK IN!</h2>
+                    
+                    <p class="sub-heading">Select your level of Individual Study Intensity</p>
+                    
+                    <div class="color-slider-container">
+                        <div class="color-slider" id="colorSlider">
+                            <div class="color-thumb" id="colorThumb"></div>
+                        </div>
+                        <div class="color-lens" id="colorLens"></div>
+                        <div class="color-hex" id="colorHex"></div>
+                    </div>
+                    
+                    <div class="intensity-labels">
+                      <div class="low-intensity">
+                        <p class="low-intensity-label">Low</p>
+                      </div>
+
+                      <div class="high-intensity">
+                        <p class="high-intensity-label">High</p>
+                      </div>
+                    </div>
+
+                    <div class="help-container">
+                        <div class="help-icon">?</div>
+                        <div class="text">
+                            <h1 class="intensity-header">Intensity Indicator Guide:</h1>
+                            <ul>
+                                <li type="square"><h2 class="Lintensity">Low Intensity:</h2></li>
+                                <ul type="circle" class="bodyText">
+                                    <li>Casual browsing of materials.</li>
+                                    <li>Limited focus and occasional distractions.</li>
+                                    <li>Relaxed pace with breaks taken frequently.</li>
+                                </ul>
+                                <li type="square"><h2 class="Mintensity">Medium Intensity:</h2></li>
+                                <ul type="circle" class="bodyText">
+                                    <li>Engaged reading and note-taking.</li>
+                                    <li>Moderate focus with occasional minor distractions.</li>
+                                    <li>Consistent pace with scheduled breaks for refreshment.</li>
+                                </ul>
+                                <li type="square"><h2 class="Hintensity">High Intensity:</h2></li>
+                                <ul type="circle" class="bodyText">
+                                    <li>Deep focus and active learning.</li>
+                                    <li>Minimal distractions and full immersion.</li>
+                                    <li>Intense concentration for extended periods with strategic breaks for optimization.</h4></li>
+                                </ul>
+                            </ul>
+                        </div>
+                        <button class="submit-button" onclick="submitColor()">submit</button>
+                    </div>
+                </section>
+
+                <script src="JavaScript/individual.js"></script>
+
+		        <footer>
+                    <p>&copy; 2024 I'm Blinded By the Lights [BBTL]</p>
+                </footer>
+
             </div>
         </div>
 
-        <!-- <div class="color-slider" id="colorSlider">
-            <div class="color-thumb" id="colorThumb"></div>
-        </div> -->
-
-        <div class="color-slider-container">
-            <div class="color-slider" id="colorSlider">
-                <div class="color-thumb" id="colorThumb"></div>
-            </div>
-            <div class="color-lens" id="colorLens"></div> <!-- New: Lens -->
-            <div class="color-hex" id="colorHex"></div> <!-- New: HEX value display -->
-        </div>
-        
-        <button class="submit-button" onclick="submitColor()">Submit</button>
-
-        <h1 class="indiv-guide">Intensity Indicator Guide:</h1>
-        <ul>
-            <li type="square"><h2 class="intensityL">Low Intensity:</h2></li>
-            <ul type="circle" style="margin-bottom: 25px;">
-                <li><h4>Casual browsing of materials.</h4></li>
-                <li><h4>Limited focus and occasional distractions.</h4></li>
-                <li><h4>Relaxed pace with breaks taken frequently.</h4></li>
-            </ul>
-            <li type="square"><h2 class="intensityM">Medium Intensity:</h2></li>
-            <ul type="circle" style="margin-bottom: 25px;">
-                <li><h4>Engaged reading and note-taking.</h4></li>
-                <li><h4>Moderate focus with occasional minor distractions.</h4></li>
-                <li><h4>Consistent pace with scheduled breaks for refreshment.</h4></li>
-            </ul>
-            <li type="square"><h2 class="intensityH">High Intensity:</h2></li>
-            <ul type="circle" style="margin-bottom: 50px;">
-                <li><h4>Deep focus and active learning.</h4></li>
-                <li><h4>Minimal distractions and full immersion.</h4></li>
-                <li><h4>Intense concentration for extended periods with strategic breaks for optimization.</h4></li>
-            </ul>
-        </ul>
-        
-        <script src="JavaScript/individual.js"></script>
-
-        <footer>
-            <p>&copy; 2024 I'm Blinded By the Lights [BBTL]</p>
-        </footer>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     </body>
 </html>
