@@ -155,3 +155,26 @@ function updateLensAndHex(e) {
     hexDisplay.style.left = thumbPosition.left + 'px'; // Align with the thumb
     hexDisplay.style.display = 'block'; // Show HEX value display
 }
+
+// Function to send data to Python Flask server
+function sendDataToPython(numPax, hexValue) {
+    fetch('http://127.0.0.1:5000/receive_data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ numPax: numPax, hexValue: hexValue }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Data sent successfully:', data);
+    })
+    .catch(error => {
+        console.error('Error sending data:', error);
+    });
+}
