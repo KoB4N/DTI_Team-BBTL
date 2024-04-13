@@ -1,76 +1,82 @@
-from http.server import BaseHTTPRequestHandler, HTTPServer
-import json
-from bleak import BleakClient
+import sys
+import logging
+import asyncio
+import threading
 
-# Define the HTTP request handler
-class RequestHandler(BaseHTTPRequestHandler):
-    def do_POST(self):
-        content_length = int(self.headers['Content-Length'])
-        post_data = self.rfile.read(content_length)
-        data = json.loads(post_data)
+from typing import Any, Union
 
-        # Extract numPax and hexValue from the received data
-        numPax = data.get('numPax')
-        hexValue = data.get('hexValue')
+from bless import (
+    BlessServer,
+    BlessGATTCharacteristic,
+    GATTCharacteristicProperties,
+    GATTAttributePermissions,
+)
 
-        # Establish BLE connection with ESP32 device
-        async def send_data_to_esp32():
-            async with BleakClient("ESP32_MAC_ADDRESS") as client:
-                # Send numPax and hexValue data to ESP32
-                await client.write_gatt_char("CHARACTERISTIC_UUID", bytearray([numPax, hexValue]))
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(name=__name__)
 
-        # Run the async function to send data to ESP32
-        asyncio.run(send_data_to_esp32())
+# NOTE: Some systems require different synchronization methods.
+trigger: Union[asyncio.Event, threading.Event]
+if sys.platform in ["darwin", "win32"]:
+    trigger = threading.Event()
+else:
+    trigger = asyncio.Event()
 
-        # Send response back to the JavaScript code
-        self.send_response(200)
-        self.end_headers()
-        self.wfile.write(json.dumps({'status': 'success'}).encode())
+my_service_uuid = "A07498CA-AD5B-474E-940D-16F1FBE7E8CD"
+my_service_uuid = my_service_uuid[:-8] + "ff020012"
 
-# Define the HTTP server
-def run(server_class=HTTPServer, handler_class=RequestHandler, port=8000):
-    server_address = ('', port)
-    httpd = server_class(server_address, handler_class)
-    print(f'Starting server on port {port}...')
-    httpd.serve_forever()
-
-# Run the HTTP server
-if __name__ == "__main__":
-    run()
+def read_request(characteristic: BlessGATTCharacteristic, **kwargs) -> bytearray:
+    logger.debug(f"Reading {characteristic.value}")
+    return characteristic.value
 
 
-# import asyncio
-# from bleak import BleakScanner
+def write_request(characteristic: BlessGATTCharacteristic, value: str, **kwargs):
+    characteristic.value = value.encode()  # Convert string to bytes
+    logger.debug(f"Char value set to {characteristic.value}")
+    if characteristic.value == b"hello":
+        logger.debug("NICE")
+        trigger.set()
 
-# # UUID of the iBeacon
-# UUID = "87b99b2c-90fd-11e9-bc42-526af7764f64"
 
-# # Function to pack numPax and hexValue into iBeacon data
-# def pack_data(numPax, hexValue):
-#     numPax_bytes = bytes([numPax])  # Assuming numPax is a single byte (0 to 255)
-#     hexValue_bytes = bytes.fromhex(hexValue)  # Convert hex string to bytes
-#     return numPax_bytes + hexValue_bytes
+async def run(loop):
+    trigger.clear()
+    # Instantiate the server
+    my_service_name = "Test Service"
+    server = BlessServer(name=my_service_name, loop=loop)
+    server.read_request_func = read_request
+    server.write_request_func = write_request
 
-# # Callback function to simulate advertisement
-# def advertisement_callback(device, advertisement_data):
-#     print(f"Advertising numPax: {advertisement_data.service_data.get(UUID)[0]} hexValue: {advertisement_data.service_data.get(UUID)[1:].hex()}")
+    # Add Service
+    await server.add_new_service(my_service_uuid)
 
-# # Function to simulate BLE advertisement
-# async def simulate_advertisement(numPax, hexValue):
-#     try:
-#         while True:
-#             beacon_data = pack_data(numPax, hexValue)
-#             await asyncio.sleep(1)  # Advertisement interval
-#     except KeyboardInterrupt:
-#         pass
+    # Add a Characteristic to the service
+    my_char_uuid = "51FF12BB-3ED8-46E5-B4F9-D64E2FEC021B"
+    char_flags = (
+        GATTCharacteristicProperties.read
+        | GATTCharacteristicProperties.write
+        | GATTCharacteristicProperties.indicate
+    )
+    permissions = GATTAttributePermissions.readable | GATTAttributePermissions.writeable
+    await server.add_new_characteristic(
+        my_service_uuid, my_char_uuid, char_flags, None, permissions
+    )
 
-# if __name__ == "__main__":
-#     numPax = 1  # Example numPax value
-#     hexValue = "d699ee"  # Example hexValue
+    logger.debug(server.get_characteristic(my_char_uuid))
+    await server.start()
+    logger.debug("Advertising")
+    logger.info(f"Write 'hello' to the advertised characteristic: {my_char_uuid}")
+    if trigger.__module__ == "threading":
+        trigger.wait()
+    else:
+        await trigger.wait()
 
-#     loop = asyncio.get_event_loop()
-#     loop.create_task(simulate_advertisement(numPax, hexValue))  # Start the advertisement task
+    await asyncio.sleep(2)
+    logger.debug("Updating")
+    server.get_characteristic(my_char_uuid)
+    server.update_value(my_service_uuid, "51FF12BB-3ED8-46E5-B4F9-D64E2FEC021B")
+    await asyncio.sleep(5)
+    await server.stop()
 
-#     scanner = BleakScanner()
-#     scanner.register_detection_callback(advertisement_callback)  # Register the callback for advertisement simulation
-#     loop.run_until_complete(scanner.start())
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(run(loop))
