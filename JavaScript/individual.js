@@ -1,31 +1,3 @@
-// Function to handle data transfer
-// function sendDataToPython(numPax, hexValue) {
-//     // const xhr = new XMLHttpRequest();
-//     // xhr.open("POST", "http://localhost:5500/send_data", true);
-//     // xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-//     // xhr.send(JSON.stringify({numPax: numPax}, {hexValue: hexValue}))
-    
-//     // Send data to Python script via HTTP POST request
-//     fetch('http://127.0.0.1:5500/individual.html', {
-//         method: 'POST',
-//         headers: {
-//         'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({ numPax: numPax, hexValue: hexValue }),
-//     })
-//     .then(response => {
-//         if (!response.ok) {
-//         throw new Error('Network response was not ok');
-//         }
-//         return response.json();
-//     })
-//     .then(data => {
-//         console.log('Data sent successfully:', data);
-//     })
-//     .catch(error => {
-//         console.error('Error sending data:', error);
-//     });
-// }
 
 // Function to handle color selection
 function submitColor() {
@@ -42,7 +14,8 @@ function submitColor() {
         var confirmation = confirm("Are you sure of your level of individual study intensity?");
         
         if (confirmation) {
-            // sendDataToPython(1, hexDisplay.innerText);
+            var dCount_hexVal = hexDisplay.innerText.substring(1) + "02";
+            sendDataToPython(dCount_hexVal);
             alert("Your confirmed choice of selection is: " + hexDisplay.innerText + "\n" + "Good luck & Enjoy your study session! :))");
             window.location.href = "home.html";
         };
