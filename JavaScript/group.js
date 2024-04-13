@@ -1,3 +1,5 @@
+var deviceCount = new URLSearchParams(window.location.search).get('deviceCount');
+
 function submitColor() {
     event.preventDefault();
     
@@ -6,6 +8,8 @@ function submitColor() {
     if (colorHex.trim() === "") {
         alert("No selection made! Please select a color for your group!"); 
     } else {
+        var dCount_hexVal = colorHex.substring(1) + deviceCount;
+        sendDataToPython(dCount_hexVal);
         alert("Your group's confirmed choice of selection is: " + colorHex + "\n" + "Good luck & Enjoy your session together! :))");
         window.location.href = "home.html";
     }
@@ -91,3 +95,27 @@ document.addEventListener("DOMContentLoaded", function () {
     colorSlider.addEventListener("mousemove", updateColor);
     colorSlider.addEventListener("mousedown", showColorPicker);
 });
+
+// Function to send data to Python Flask server
+function sendDataToPython(dCount_hexVal) {
+    fetch('http://127.0.0.1:5000/receive_data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ dCount_hexVal: dCount_hexVal }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Data sent successfully:', data);
+    })
+    .catch(error => {
+        console.error('Error sending data:', error);
+    });
+}
+

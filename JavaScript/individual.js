@@ -1,4 +1,3 @@
-
 // Function to handle color selection
 function submitColor() {
     event.preventDefault();
@@ -130,13 +129,13 @@ function updateLensAndHex(e) {
 }
 
 // Function to send data to Python Flask server
-function sendDataToPython(numPax, hexValue) {
+function sendDataToPython(dCount_hexVal) {
     fetch('http://127.0.0.1:5000/receive_data', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ numPax: numPax, hexValue: hexValue }),
+        body: JSON.stringify({ dCount_hexVal: dCount_hexVal }),
     })
     .then(response => {
         if (!response.ok) {
