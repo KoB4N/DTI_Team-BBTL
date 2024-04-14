@@ -8,8 +8,8 @@ function submitColor() {
     if (colorHex.trim() === "") {
         alert("No selection made! Please select a color for your group!"); 
     } else {
-        var hexVal_dCount = colorHex.substring(1) + deviceCount;
-        sendDataToPython(hexVal_dCount);
+        var dCount_hexVal = colorHex.substring(0) + deviceCount;
+        sendDataToPython(dCount_hexVal);
         alert("Your group's confirmed choice of selection is: " + colorHex + "\n" + "Good luck & Enjoy your session together! :))");
         window.location.href = "home.html";
     }
@@ -97,13 +97,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Function to send data to Python Flask server
-function sendDataToPython(hexVal_dCount) {
+function sendDataToPython(dCount_hexVal) {
     fetch('http://127.0.0.1:5000/receive_data', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ hexVal_dCount: hexVal_dCount }),
+        body: JSON.stringify({ hexVal_dCount: dCount_hexVal }), // Change key here to match expected format
     })
     .then(response => {
         if (!response.ok) {
@@ -118,4 +118,3 @@ function sendDataToPython(hexVal_dCount) {
         console.error('Error sending data:', error);
     });
 }
-
