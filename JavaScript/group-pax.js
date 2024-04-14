@@ -1,4 +1,5 @@
 var inputField;
+var deviceCount;
 
 window.onload = function() {
     inputField = document.getElementById('group-size');
@@ -45,7 +46,13 @@ function submitPax() {
     } else {
         var confirmation = confirm("You entered your Group Size as " + inputField.value + " Pax?");
         if (confirmation) {
-            window.location.href = "group.html";
+            deviceCount_num = parseInt(inputField.value)*2;
+            deviceCount = String(deviceCount_num);
+            if (deviceCount.length != 2) {
+                deviceCount = "0" + deviceCount; 
+            }            
+            // window.location.href = "group.html" + deviceCount;
+            window.location.href = "group.html?deviceCount=" + deviceCount;
         }
     }
 }
