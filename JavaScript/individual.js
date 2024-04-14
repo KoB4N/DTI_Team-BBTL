@@ -13,8 +13,8 @@ function submitColor() {
         var confirmation = confirm("Are you sure of your level of individual study intensity?");
         
         if (confirmation) {
-            var dCount_hexVal = hexDisplay.innerText.substring(1) + "02";
-            sendDataToPython(dCount_hexVal);
+            var hexVal_dCount = hexDisplay.innerText.substring(1) + "02"; 
+            sendDataToPython(hexVal_dCount);
             alert("Your confirmed choice of selection is: " + hexDisplay.innerText + "\n" + "Good luck & Enjoy your study session! :))");
             window.location.href = "home.html";
         };
@@ -129,13 +129,13 @@ function updateLensAndHex(e) {
 }
 
 // Function to send data to Python Flask server
-function sendDataToPython(dCount_hexVal) {
+function sendDataToPython(hexVal_dCount) {
     fetch('http://127.0.0.1:5000/receive_data', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ dCount_hexVal: dCount_hexVal }),
+        body: JSON.stringify({ hexVal_dCount: hexVal_dCount }),
     })
     .then(response => {
         if (!response.ok) {
