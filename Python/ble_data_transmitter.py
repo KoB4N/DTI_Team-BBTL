@@ -12,6 +12,14 @@ from bless import (
     GATTAttributePermissions,
 )
 
+import json
+############## & C:/Users/dinhv/anaconda3/envs/python.exe C:\Users\dinhv\Desktop\dti3\DTI_Team-BBTL\Python\ble_data_transmitter.py
+
+# Open the JSON file and load hex
+with open('output.json', 'r') as f:
+    data = json.load(f)
+output_string = data['output_string']
+
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(name=__name__)
 
@@ -23,19 +31,15 @@ else:
     trigger = asyncio.Event()
 
 my_service_uuid = "A07498CA-AD5B-474E-940D-16F1FBE7E8CD"
-my_service_uuid = my_service_uuid[:-8] + "ff020012"
+if output_string != None:
+    my_service_uuid = my_service_uuid[:-8] + output_string[1:]
+    print(my_service_uuid)
+else:
+    my_service_uuid = my_service_uuid[:-8] + "ffffff04"
 
 def read_request(characteristic: BlessGATTCharacteristic, **kwargs) -> bytearray:
     logger.debug(f"Reading {characteristic.value}")
     return characteristic.value
-
-
-def write_request(characteristic: BlessGATTCharacteristic, value: str, **kwargs):
-    characteristic.value = value.encode()  # Convert string to bytes
-    logger.debug(f"Char value set to {characteristic.value}")
-    if characteristic.value == b"hello":
-        logger.debug("NICE")
-        trigger.set()
 
 
 async def run(loop):
@@ -44,7 +48,6 @@ async def run(loop):
     my_service_name = "Test Service"
     server = BlessServer(name=my_service_name, loop=loop)
     server.read_request_func = read_request
-    server.write_request_func = write_request
 
     # Add Service
     await server.add_new_service(my_service_uuid)
@@ -64,7 +67,6 @@ async def run(loop):
     logger.debug(server.get_characteristic(my_char_uuid))
     await server.start()
     logger.debug("Advertising")
-    logger.info(f"Write 'hello' to the advertised characteristic: {my_char_uuid}")
     if trigger.__module__ == "threading":
         trigger.wait()
     else:
