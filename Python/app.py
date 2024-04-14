@@ -16,8 +16,8 @@ def receive_data():
 
     if request.method == 'POST':
         data = request.json
-        dCount_hexVal = data.get('dCount_hexVal')
-        output_string = f"{dCount_hexVal}"
+        hexVal_dCount = data.get('hexVal_dCount')
+        output_string = f"{hexVal_dCount}"
         
         print(output_string)  # This will print "Hex value Number of passengers"
 
