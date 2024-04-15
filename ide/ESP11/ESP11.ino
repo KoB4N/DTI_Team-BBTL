@@ -13,16 +13,26 @@ RTC_DATA_ATTR static uint32_t bootcount; // remember number of boots in RTC Memo
 
 #define GPIO_PIN 2
 
-const char* message = "#de2323 esp11";
+const float alpha = 0.2; // Smoothing factor, adjust as needed
+
+// Initialize smoothed RSSI value
+float smoothedRSSI = 0;
+
+const char* message = "esp11";
 uint8_t ledR = 39; // ESP32-S3 pin for red LED | GPIO 39 
 uint8_t ledG = 40; // ESP32-S3 pin for green LED | GPIO 40 
 uint8_t ledB = 41; // ESP32-S3 pin for blue LED | GPIO 41 
- 
+
 const boolean invert = true; // true: common anode logic '1' | false: common cathode logic '0' 
  
 String hexValue_S = "#005ac8";
 //7bffff04
 String lastEightChars = "";
+
+int prevRSSI = 0;
+int prevShade = 0;
+
+double dist_percent = 1.0;
 
 BLEAdvertising *pAdvertising; // BLE Advertisement type
 BLEScan *pBLEScan;            // BLE Scan type
@@ -30,10 +40,10 @@ BLECharacteristic *pCharacteristic; // BLE Characteristic for sending message
 
 void setRGBColor(uint8_t R, uint8_t G, uint8_t B) { 
     // Print debug information 
-    Serial.println("Setting RGB values:"); 
-    Serial.print("R: "); Serial.println(R); 
-    Serial.print("G: "); Serial.println(G); 
-    Serial.print("B: "); Serial.println(B); 
+    // Serial.println("Setting RGB values:"); 
+    // Serial.print("R: "); Serial.println(R); 
+    // Serial.print("G: "); Serial.println(G); 
+    // Serial.print("B: "); Serial.println(B); 
  
     // Set PWM duty cycle for each color 
     ledcWrite(1, R); 
@@ -54,54 +64,89 @@ void ledSetup() {
 
 }
 
+void extractRGB(String hexColor, uint8_t& red, uint8_t& green, uint8_t& blue) {
+    // Convert hex color string to uint32_t
+    uint32_t colorValue = (uint32_t)strtol(hexColor.c_str(), NULL, 16);
+
+    // Extract RGB components
+    red = (colorValue >> 16) & 0xFF;
+    green = (colorValue >> 8) & 0xFF;
+    blue = colorValue & 0xFF;
+}
+
 class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks {
     void onResult(BLEAdvertisedDevice advertisedDevice) {
         
         // int pinValue = digitalRead(GPIO_PIN);
         // delay(2000);
-        // if(pinValue == 0) {
-          if (advertisedDevice.haveName() && advertisedDevice.getName() == SERVER_NAME) {
-              for (int i = 0; i < advertisedDevice.getServiceUUIDCount(); i++) {
-                  BLEUUID serviceUUID = advertisedDevice.getServiceUUID(i);
-                  String uuidStr = serviceUUID.toString().c_str();
-                  // Extract the last 8 characters of the UUID
-                  String newLastEightChars = uuidStr.substring(28);
-                  if (uuidStr.indexOf("a07498ca-ad5b-474e-940d-16f") != -1 && newLastEightChars != lastEightChars) {
-                      lastEightChars = newLastEightChars;
-                      Serial.println(lastEightChars); // when this is printed, it means the user init new color on the website
-                      // Convert lastEightChars to std::string for manipulation
-                      std::string stdLastEightChars = lastEightChars.c_str();
-                      stdLastEightChars.erase(stdLastEightChars.size() - 2);
-                      lastEightChars = stdLastEightChars.c_str();
-                      hexValue_S = "#" + lastEightChars;
-                      uint32_t hexValue = (uint32_t) strtol(hexValue_S.substring(1).c_str(), NULL, 16); // Skip the '#' character 
+        // if(pinValue == 0) { 
+        // if (false) { 
+            if (advertisedDevice.haveName() && advertisedDevice.getName() == SERVER_NAME) {
+                for (int i = 0; i < advertisedDevice.getServiceUUIDCount(); i++) {
+                    BLEUUID serviceUUID = advertisedDevice.getServiceUUID(i);
+                    String uuidStr = serviceUUID.toString().c_str();
+                    // Extract the last 8 characters of the UUID
+                    String newLastEightChars = uuidStr.substring(28);
+                    if (uuidStr.indexOf("a07498ca-ad5b-474e-940d-16f") != -1 && newLastEightChars != lastEightChars) {
+                        lastEightChars = newLastEightChars;
+                        Serial.println(lastEightChars); // when this is printed, it means the user init new color on the website
+                        // Convert lastEightChars to std::string for manipulation
+                        std::string stdLastEightChars = lastEightChars.c_str();
+                        stdLastEightChars.erase(stdLastEightChars.size() - 2);
+                        lastEightChars = stdLastEightChars.c_str();
+                        hexValue_S = "#" + lastEightChars;
+                        uint32_t hexValue = (uint32_t)strtol(hexValue_S.substring(1).c_str(), NULL, 16); // Skip the '#' character 
             
-                      // Extract RGB components 
-                      uint8_t R = (hexValue >> 16) ; // Red component 
-                      uint8_t G = (hexValue >> 8);  // Green component 
-                      uint8_t B = hexValue ;         // Blue component 
-                      
-                      // Set LED color based on RGB values 
-                      setRGBColor(R, G, B); 
-                      
-                      // Print the hex value and the corresponding RGB components 
-                      Serial.print("Hex Value: "); 
-                      Serial.print(hexValue_S); 
-                      Serial.print("\nRGB: "); 
-                      
-                      delay(2000);}
+                        // Extract RGB components 
+                        uint8_t R = (hexValue >> 16) ; // Red component 
+                        uint8_t G = (hexValue >> 8);  // Green component 
+                        uint8_t B = hexValue ;         // Blue component 
+                        
+                        // Set LED color based on RGB values 
+                        // setRGBColor(R, G, B); 
+                        
+                        // Print the hex value and the corresponding RGB components 
+                        // Serial.print("Hex Value: "); 
+                        // Serial.print(hexValue_S); 
+                        // Serial.print("\nRGB: "); 
+                        
+                        delay(1000);
                     }
-                  }
-        // } 
+                // }
+            } 
+        } 
         // else if (pinValue == 1) { // switch back later 1
-            if (advertisedDevice.getName().find("esp11") != std::string::npos) { // to filter the unwanted signals
-                          std::string namePrefix = advertisedDevice.getName().substr(0, 7); // get hex
-                          Serial.println(namePrefix.c_str());
-                          Serial.println(advertisedDevice.getRSSI()); //printing distance
+        
+             if (advertisedDevice.getName().find("esp11") != std::string::npos ) { // Filter unwanted signals
+                std::string namePrefix = advertisedDevice.getName().substr(0, 7); // Get hex
+                Serial.println(namePrefix.c_str());
+                int rssi = advertisedDevice.getRSSI(); // Retrieve RSSI value
+                Serial.println(rssi); // Print RSSI
+
+                // Extract RGB components from original color hex string
+                uint8_t originalRed = strtol(hexValue_S.substring(1, 3).c_str(), NULL, 16);
+                uint8_t originalGreen = strtol(hexValue_S.substring(3, 5).c_str(), NULL, 16);
+                uint8_t originalBlue = strtol(hexValue_S.substring(5, 7).c_str(), NULL, 16);
+                // Smooth the RSSI value using EMA
+                smoothedRSSI = alpha * rssi + (1 - alpha) * smoothedRSSI;
+                int darkness_level = map(smoothedRSSI, -60, -20, 10, 1); // Map smoothed RSSI to darkness level (1 to 10)
+
+                // Calculate darker shades
+                int darkerRed = originalRed * (10 - darkness_level) / 10;
+                int darkerGreen = max(originalGreen * (10 - darkness_level) / 10, 0); 
+                int darkerBlue = max(originalBlue * (10 - darkness_level) / 10, 0);
+
+
+                // Set LED color
+                setRGBColor(darkerRed, darkerGreen, darkerBlue);
+                Serial.println(darkerRed );
+                Serial.println(darkerGreen);
+                Serial.println(darkerBlue);
             }
         // }
     }
 };
+
 
 
 
