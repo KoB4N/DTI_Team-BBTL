@@ -1,0 +1,346 @@
+.logo {
+    font-size: 70px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-feature-settings: "clig" off, "liga" off;
+    justify-content: center;
+    align-self: start;
+    color: #70d6ff;
+    letter-spacing: -7px;
+    margin-top: -25px;
+}
+
+@media (max-width: 991px) {
+.logo {
+    font-size: 40px;
+}
+}
+
+.container {
+    background-color: #121212;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 400;
+    text-align: center;
+    line-height: 130%;
+    padding: 40px 60px 80px;
+}
+
+@media (max-width: 991px) {
+.container {
+    padding: 0 20px;
+}
+}
+
+.content-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1213px;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 991px) {
+.content-wrapper {
+    max-width: 100%;
+}
+}
+
+.header {
+    align-self: stretch;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    justify-content: space-between;
+    padding: 0 0 27px 26px;
+}
+
+@media (max-width: 991px) {
+.header {
+max-width: 100%;
+flex-wrap: wrap;
+padding-left: 20px;
+}
+}
+
+.nav-container {
+    justify-content: center;
+    display: flex;
+    width: 553px;
+    max-width: 100%;
+    flex-direction: column;
+}
+
+.nav-wrapper {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 2px;
+}
+
+@media (max-width: 991px) {
+.nav-wrapper {
+    max-width: 100%;
+}
+}
+
+.nav-list {
+    display: flex;
+    gap: 20px;
+}
+
+@media (max-width: 991px) {
+.nav-list {
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+}
+
+.nav-item {
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Readex Pro, sans-serif;
+    text-decoration: none;
+    color: white;
+}
+
+.nav-item-design {
+    flex-grow: 1;
+    flex-basis: auto;
+}
+
+.nav-item:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.hero-image {
+    aspect-ratio: 1.72;
+    object-fit: auto;
+    object-position: center;
+    width: 100%;
+    border: 15px dashed rgba(231, 198, 255, 1);
+    border-radius: 5px;
+    align-self: stretch;
+    margin-top: 40px;
+}
+
+@media (max-width: 991px) {
+.hero-image {
+    max-width: 100%;
+}
+}
+
+.section-title {
+    color: #fff;
+    text-align: center;
+    font-feature-settings: "clig" off, "liga" off;
+    margin-top: 90px;
+    font: 400 48px Public Sans, sans-serif;
+}
+
+@media (max-width: 991px) {
+.section-title {
+    margin-top: 40px;
+    font-size: 40px;
+}
+}
+
+.team-members {
+    margin-top: 90px;
+    width: 100%;
+    max-width: 1063px;
+}
+
+@media (max-width: 991px) {
+.team-members {
+    max-width: 100%;
+    margin-top: 40px;
+}
+}
+
+.team-row {
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 991px) {
+.team-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0px;
+}
+}
+
+.member-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 991px) {
+.member-column {
+    width: 100%;
+}
+}
+
+.member-card {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+}
+
+@media (max-width: 991px) {
+.member-card {
+    margin-top: 40px;
+}
+}
+
+.member-image {
+    aspect-ratio: 1;
+    object-fit: auto;
+    object-position: center;
+    border: 2px solid rgba(255, 255, 255, 1);
+    width: 175px;
+    height: 175px;
+    border-radius: 50%; 
+    overflow: hidden;
+}
+
+.member-name {
+    font-feature-settings: "clig" off, "liga" off;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 13px;
+    font: 700 13px Inter, sans-serif;
+}
+
+.member-description {
+    font-feature-settings: "clig" off, "liga" off;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    align-self: stretch;
+    margin-top: 14px;
+    font: 400 12px Inter, sans-serif;
+    text-align: left;
+}
+
+.member-column-2 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 991px) {
+.member-column-2 {
+    width: 100%;
+}
+}
+
+.member-description-2 {
+    font-feature-settings: "clig" off, "liga" off;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    align-self: stretch;
+    margin-top: 14px;
+    font: 400 12px Inter, sans-serif;
+    text-align: left;
+}
+
+.member-column-3 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 991px) {
+.member-column-3 {
+    width: 100%;
+}
+}
+
+.member-card-3 {
+    display: flex;
+    margin-top: 5px;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+}
+
+@media (max-width: 991px) {
+.member-card-3 {
+    margin-top: 40px;
+}
+}
+
+.member-description-3 {
+    font-feature-settings: "clig" off, "liga" off;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    align-self: stretch;
+    margin-top: 14px;
+    font: 400 12px Inter, sans-serif;
+    text-align: left;
+}
+
+.team-row-2 {
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.member-column-4 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 991px) {
+.member-column-4 {
+    width: 100%;
+}
+}
+
+.member-description-4 {
+    font-feature-settings: "clig" off, "liga" off;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    align-self: stretch;
+    margin-top: 14px;
+    font: 400 12px Inter, sans-serif;
+    text-align: left;
+}
+
+.member-column-5 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 991px) {
+.member-column-5 {
+    width: 100%;
+}
+}
+
+.member-description-5 {
+    font-feature-settings: "clig" off, "liga" off;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    align-self: stretch;
+    margin-top: 14px;
+    font: 400 12px Inter, sans-serif;
+    text-align: left;
+} 

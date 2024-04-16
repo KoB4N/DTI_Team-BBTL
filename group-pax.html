@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>REM</title>
+        <link rel="stylesheet" href="CSS/group-pax.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div class="content-wrapper">
+
+                <header class="header">
+                    <h1 class="logo">
+                        <span style="color: rgba(247, 22, 22, 1);">R</span>
+                        <span style="color: rgba(101, 240, 142, 1);">E</span>
+                        <span style="color: rgba(0, 255, 255, 1);">M</span>
+                    </h1>
+                    <nav class="nav-container">
+                        <ul class="nav-wrapper">
+                            <li class="nav-list">
+                                <a href="home.html" class="nav-item nav-item-design">HOME</a>
+                                <a href="overview.html" class="nav-item nav-item-design">OVERVIEW</a>
+                                <a href="design.html" class="nav-item nav-item-design">DESIGN PROCESS</a>
+                                <a href="team.html" class="nav-item nav-item-design">ABOUT US</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </header>
+
+                <img src="src/ancestors.png" alt="" class="hero-image" />
+                <form>
+                    <div class="hero-title">How many of you are there?</div>
+                    <hr class="divider"/>
+                    <input id="group-size" class="divider-input" type="text"/>
+                    <div class="btn-container">
+                        <button class="sub-button" onclick="submitPax()">submit</button>
+                        <input class="reset-button" type="reset" value="reset">
+                    </div>
+                </form>
+
+                <script src="JavaScript/group-pax.js"></script>
+
+		            <footer>
+                    <p>&copy; 2024 I'm Blinded By the Lights [BBTL]</p>
+                </footer>
+
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    </body>
+</html>

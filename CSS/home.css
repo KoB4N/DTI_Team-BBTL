@@ -1,0 +1,358 @@
+.logo {
+    font-size: 70px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-feature-settings: "clig" off, "liga" off;
+    justify-content: center;
+    align-self: start;
+    color: #70d6ff;
+    letter-spacing: -7px;
+    margin-top: -25px;
+}
+
+@media (max-width: 991px) {
+.logo {
+    font-size: 40px;
+}
+}
+
+.container {
+    background-color: #121212;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 400;
+    text-align: center;
+    line-height: 130%;
+    padding: 40px 60px 80px;
+}
+
+@media (max-width: 991px) {
+.container {
+    padding: 0 20px;
+}
+}
+
+.content-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1213px;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 991px) {
+.content-wrapper {
+    max-width: 100%;
+}
+}
+
+.header {
+    align-self: stretch;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    justify-content: space-between;
+    padding: 0 0 27px 26px;
+}
+
+@media (max-width: 991px) {
+.header {
+max-width: 100%;
+flex-wrap: wrap;
+padding-left: 20px;
+}
+}
+
+.nav-container {
+    justify-content: center;
+    display: flex;
+    width: 553px;
+    max-width: 100%;
+    flex-direction: column;
+}
+
+.nav-wrapper {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 2px;
+}
+
+@media (max-width: 991px) {
+.nav-wrapper {
+    max-width: 100%;
+}
+}
+
+.nav-list {
+    display: flex;
+    gap: 20px;
+}
+
+@media (max-width: 991px) {
+.nav-list {
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+}
+
+.nav-item {
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Readex Pro, sans-serif;
+    text-decoration: none;
+    color: white;
+}
+
+.nav-item-design {
+    flex-grow: 1;
+    flex-basis: auto;
+}
+
+.nav-item:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+.study-modes {
+    display: flex;
+    margin-top: 126px;
+    width: 100%;
+    max-width: 1030px;
+    gap: 20px;
+    font-size: 24px;
+    color: #717171;
+    line-height: 31px;
+}
+
+@media (max-width: 991px) {
+.study-modes {
+    max-width: 100%;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+}
+
+.solo-mode {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+
+.solo-mode-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.solo-mode-card {
+    border-radius: 30px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 24px;
+
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+}
+
+@media (max-width: 991px) {
+.solo-mode-card {
+    padding: 0 20px;
+}
+}
+
+.solo-mode-image {
+    aspect-ratio: 1.02;
+    object-fit: auto;
+    object-position: center;
+    width: 100%;
+    alt: "Solo mode study image";
+}
+
+.solo-mode-description {
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Public Sans, sans-serif;
+    margin-top: 11px;
+}
+
+.text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    opacity: 0;
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Public Sans, sans-serif;
+    transition: opacity 0.4s;
+    pointer-events: none;
+}
+
+.solo-mode-card:hover .text {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.collab-mode {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+
+.collab-mode-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.collab-mode-card {
+    border-radius: 30px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 24px;
+
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+}
+
+@media (max-width: 991px) {
+.collab-mode-card {
+    padding: 0 20px;
+}
+}
+
+.collab-mode-card:hover .text {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.collab-mode-image {
+    aspect-ratio: 1.02;
+    object-fit: auto;
+    object-position: center;
+    width: 100%;
+    alt: "Collaborative mode study image";
+}
+
+.mode-selection {
+    display: flex;
+    margin-top: 82px;
+    width: 937px;
+    max-width: 100%;
+    align-items: start;
+    gap: 20px;
+    white-space: nowrap;
+}
+
+@media (max-width: 991px) {
+.mode-selection {
+    flex-wrap: wrap;
+    margin-top: 40px;
+    white-space: initial;
+}
+}
+
+.solo-mode-button-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    text-decoration: none;
+}
+
+@media (max-width: 991px) {
+.solo-mode-button-wrapper {
+    white-space: initial;
+}
+}
+
+.solo-mode-button {
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Readex Pro, sans-serif;
+    border-radius: 50px;
+    border: 1px solid #fff;
+    align-items: center;
+    justify-content: center;
+    padding: 23px 60px;
+    background-color: #121212;
+    color: white;
+}
+
+.solo-mode-button:hover {
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Readex Pro, sans-serif;
+    border-radius: 50px;
+    border: 1px solid yellow;
+    align-items: center;
+    justify-content: center;
+    padding: 23px 60px;
+    background-color: #121212;
+    color: yellow;
+}
+
+@media (max-width: 991px) {
+.solo-mode-button {
+    white-space: initial;
+    padding: 0 20px;
+}
+}
+
+.collab-mode-button-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    text-decoration: none;
+}
+
+@media (max-width: 991px) {
+.collab-mode-button-wrapper {
+    white-space: initial;
+}
+}
+
+.collab-mode-button {
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Readex Pro, sans-serif;
+    border-radius: 50px;
+    border: 1px solid #fff;
+    align-items: center;
+    justify-content: center;
+    padding: 23px 60px;
+    background-color: #121212;
+    color: white;
+}
+
+@media (max-width: 991px) {
+.collab-mode-button {
+    white-space: initial;
+    padding: 0 20px;
+}
+}
+
+.collab-mode-button:hover {
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Readex Pro, sans-serif;
+    border-radius: 50px;
+    border: 1px solid cyan;
+    align-items: center;
+    justify-content: center;
+    padding: 23px 60px;
+    background-color: #121212;
+    color: cyan;
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+}
